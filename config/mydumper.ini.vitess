@@ -17,6 +17,8 @@ table = corder,product
 outdir = ./dumper-sql
 # Split tables into chunks of this output file size. This value is in MB
 chunksize = 128
+# Control the size of Insert Statement
+stmtsize = 10000000
 # Session variables, split by &
 # initvars= "xx=xx&xx=xx"
 # vars= "xx=xx&xx=xx"

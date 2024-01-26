@@ -86,6 +86,10 @@ func ParseDumperConfig(file string) (*Config, error) {
 	if err != nil {
 		return nil, fmt.Errorf("parsing mysql.chunksize failed")
 	}
+	stmtsize, err := cfg.Section("mysql").Key("stmtsize").Int()
+	if err != nil {
+		return nil, fmt.Errorf("parsing mysql.stmtsize failed")
+	}
 	threads, err := cfg.Section("mysql").Key("threads").Int()
 	if err != nil {
 		return nil, fmt.Errorf("parsing mysql.threads failed")
@@ -148,7 +152,7 @@ func ParseDumperConfig(file string) (*Config, error) {
 	args.InitVars = initVars
 	args.Format = format
 	args.Threads = threads
-	args.StmtSize = 1000000
+	args.StmtSize = stmtsize
 	args.IntervalMs = 10 * 1000
 	return args, nil
 }
